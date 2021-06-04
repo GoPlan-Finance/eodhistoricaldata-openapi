@@ -108,3 +108,5 @@ typings/
 /.idea/inspectionProfiles/Project_Default.xml
 /package-lock.json
 /petstore.yaml
+/tests/http-client.private.env.json
+/src/tmp

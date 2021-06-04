@@ -22,7 +22,7 @@ npm run generate
 
 
 
-###  Historical Prices, Splits and Dividends Data API(6)
+###  Historical Prices, Splits and Dividends Data API
 - ⏳  Stock Price Data API (End-Of-Day Historical Data)
 - ⏳  Live (Delayed) Stock Prices API
 - ⏳  Historical Splits, Dividends and Short Interest API
@@ -30,7 +30,7 @@ npm run generate
 -   Intraday Historical Data API
 -   Options Data API
 
-### Fundamental and Economic Financial Data API(6)
+### Fundamental and Economic Financial Data API
 -   Insider Transactions API
 - ⏳  Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
 - ⏳  Calendar. Upcoming Earnings, Trends, IPOs and Splits
@@ -38,11 +38,11 @@ npm run generate
 -   Economic Data API
 -   Bonds Fundamentals and Historical API
 
-### Exchanges (Stock Market) Financial APIs(6)
+### Exchanges (Stock Market) Financial APIs
 - ⏳ Bulk API for EOD, Splits and Dividends
 -  Exchanges API. Get List of Tickers
-    - ⏳ Get List of Exchanges
-    - ⏳ Get List of Tickers (Exchange Symbols)
+    - ✅ Get List of Exchanges
+    - ✅ Get List of Tickers (Exchange Symbols)
     
 -   Exchanges API. Trading Hours and Market Holidays
     - ⏳ Get Exchange Details and Trading Hours
@@ -50,9 +50,9 @@ npm run generate
     
 - ⏳ Financial News API
 -  Stock Market Screener API
-- ⏳ Search API for Stocks, ETFs, Mutual Funds and Indices
+- ✅ Search API for Stocks, ETFs, Mutual Funds and Indices
 
-###  Available Data Feeds(5)
+###  Available Data Feeds
 -  List of Supported Exchanges
 -  List of Supported CRYPTO Currencies
 -  List of Supported Futures/Commodities

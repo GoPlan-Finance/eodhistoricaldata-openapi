@@ -1,0 +1,12 @@
+###
+GET https://eodhistoricaldata.com/api/search/test?api_token={{api_token}}
+
+###
+
+
+GET https://eodhistoricaldata.com/api/exchanges-list/?api_token={{api_token}}
+
+
+###
+
+GET  https://eodhistoricaldata.com/api/exchange-symbol-list/NEO?api_token={{api_token}}&fmt=json

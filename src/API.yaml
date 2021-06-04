@@ -1,0 +1,207 @@
+openapi: 3.0.0
+servers:
+  - description:  EOD Historical Data API
+    url: https://eodhistoricaldata.com/api/
+info:
+  description: EOD Historical Data API
+  version: 1.0.0
+  title: EOD Historical Data API
+  contact:
+    email: sam@sddproductions.com
+  license:
+    name: GPL-3.0
+tags:
+  - name: search
+    description: Search
+  - name: exchanges
+    description: Exchanges
+#  - name: company_valuation
+#    description: Company Valuation
+#  - name: list
+#    description: List
+security:
+  - api_token: []
+paths:
+  /search/{query}:
+    get:
+      tags:
+        - search
+      summary: Search symbols
+      parameters:
+        - name: query
+          in: path
+          description: Name of ticker or search string
+          required: true
+          schema:
+            type: string
+      description: ''
+      operationId: Search
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: SymbolSearch
+        '405':
+          description: Invalid input
+########################################################################################################################
+  /exchanges-list:
+    get:
+      tags:
+        - exchanges
+      summary: Search symbols
+      description: ''
+      operationId: List Echanges
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: Exchange
+        '405':
+          description: Invalid input
+  /exchange-symbol-list/{exchangeCode}?fmt=json:
+    get:
+      tags:
+        - exchanges
+      summary: Search symbols
+      parameters:
+        - name: exchangeCode
+          in: path
+          description: ExchangeCode
+          required: true
+          schema:
+            type: string
+
+      description: ''
+      operationId: List Symbols
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: Symbol
+        '405':
+          description: Invalid input
+#  /profile/{symbol}:
+#    $ref: "./paths/profile.yaml"
+#
+#  /quote/{symbol}:
+#    $ref: "./paths/quote.yaml"
+#
+#  /{type}/list:
+#    $ref: "./paths/list.yaml"
+#
+#  /historical-price-full/{symbol}:
+#    $ref: "./paths/historicalPriceFull.yaml"
+#
+#  /historical-chart/{resolution}/{symbol}:
+#    $ref: "./paths/historicalChart.yaml"
+#
+
+components:
+  securitySchemes:
+    api_token:
+      type: apiKey
+      name: api_token
+      in: query
+  schemas:
+    Exchange:
+      required:
+        - Name
+        - Code
+        - OperatingMIC
+        - Country
+        - Currency
+      properties:
+        Code:
+          type: string
+        OperatingMIC:
+          type: array
+          items:
+            type: string
+        Name:
+          type: string
+        Country:
+          type: string
+        Currency:
+          type: string
+
+    SymbolSearch:
+      required:
+        - Code
+        - Name
+        - Country
+        - Exchange
+        - Currency
+      properties:
+        Code:
+          type: string
+        Exchange:
+          type: string
+        Name:
+          type: string
+        Country:
+          type: string
+        Currency:
+          type: string
+        Type:
+          type: string
+        ISIN:
+          type: string
+        previousClose:
+          type: number
+        previousCloseDate:
+          type: string
+          format: date
+    Symbol:
+      required:
+        - Code
+        - Name
+        - Country
+        - Exchange
+        - Currency
+      properties:
+        Code:
+          type: string
+        Exchange:
+          type: string
+        Name:
+          type: string
+        Country:
+          type: string
+        Currency:
+          type: string
+        Type:
+          type: string
+        Isin:
+          type: string
+
+#    EndOfDayPriceHistory:
+#      $ref: "./schemas/EndOfDayPriceHistory.yaml"
+#    EndOfDayPrice:
+#      $ref: "./schemas/EndOfDayPrice.yaml"
+#    OHVCVPrices:
+#      $ref: "./schemas/OHVCVPrices.yaml"
+#    OHVCVPrice:
+#      $ref: "./schemas/OHVCVPrice.yaml"
+#    CompanyProfile:
+#      $ref: "./schemas/CompanyProfile.yaml"
+#
+#
+#
+#
+#
+#
+
+
+
