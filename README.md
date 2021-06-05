@@ -23,27 +23,25 @@ npm run generate
 - 🟨 Partially implemented
 - ⏳ Will be implemented soon
 
+If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit a PR, otherwise please check with us before to make sure we dont duplicate work.
+
 ### Historical Prices, Splits and Dividends Data API
 
 - ⏳ Stock Price Data API (End-Of-Day Historical Data)
 - ⏳ Live (Delayed) Stock Prices API
 - ⏳ Historical Splits, Dividends and Short Interest API
-- Technical Indicator API
-- Intraday Historical Data API
-- Options Data API object {13} General {34} Highlights {25} Valuation {7} SharesStats {9} Technicals {9} SplitsDividends
-  {8} AnalystRatings {7} Holders {2} Institutions {20} Funds {20} InsiderTransactions {20} ESGScores {12}
-  outstandingShares {2} annual {16} quarterly {65} Earnings {3}
-
-  Financials {3}
+- ⏳ Technical Indicator API
+- ⏳ Intraday Historical Data API
+- Options Data API
 
 ### Fundamental and Economic Financial Data API
 
 - Insider Transactions API
 - 🟨 Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
     - ✅ General
-    - Highlights
+    - ⏳ Highlights
     - Valuation
-    - SharesStats
+    - ⏳ SharesStats
     - Technicals
     - ⏳ SplitsDividends
         - NumberDividendsByYear
@@ -74,11 +72,11 @@ npm run generate
 ### Exchanges (Stock Market) Financial APIs
 
 - ⏳ Bulk API for EOD, Splits and Dividends
-- Exchanges API. Get List of Tickers
+- ✅ Exchanges API. Get List of Tickers
     - ✅ Get List of Exchanges
     - ✅ Get List of Tickers (Exchange Symbols)
 
-- Exchanges API. Trading Hours and Market Holidays
+- ⏳ Exchanges API. Trading Hours and Market Holidays
     - ⏳ Get Exchange Details and Trading Hours
     - ⏳ Market Holidays Data API
 
