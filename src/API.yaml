@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - description:  EOD Historical Data API
+  - description: EOD Historical Data API
     url: https://eodhistoricaldata.com/api/
 info:
   description: EOD Historical Data API
@@ -11,8 +11,8 @@ info:
   license:
     name: GPL-3.0
 tags:
-  - name: search
-    description: Search
+  - name: assets
+    description: Assets
   - name: exchanges
     description: Exchanges
 #  - name: company_valuation
@@ -20,12 +20,15 @@ tags:
 #  - name: list
 #    description: List
 security:
-  - api_token: []
+  - api_token: [ ]
 paths:
+  ########################################################################################################################
+  ########################################################################################################################
+
   /search/{query}:
     get:
       tags:
-        - search
+        - assets
       summary: Search symbols
       parameters:
         - name: query
@@ -35,7 +38,7 @@ paths:
           schema:
             type: string
       description: ''
-      operationId: Search
+      operationId: SearchAsset
       responses:
         '200':
           description: successful operation
@@ -47,14 +50,15 @@ paths:
                   $ref: SymbolSearch
         '405':
           description: Invalid input
-########################################################################################################################
+  ########################################################################################################################
+  ########################################################################################################################
   /exchanges-list:
     get:
       tags:
         - exchanges
       summary: Search symbols
       description: ''
-      operationId: List Echanges
+      operationId: ListExchanges
       responses:
         '200':
           description: successful operation
@@ -66,6 +70,8 @@ paths:
                   $ref: Exchange
         '405':
           description: Invalid input
+  ########################################################################################################################
+  ########################################################################################################################
   /exchange-symbol-list/{exchangeCode}?fmt=json:
     get:
       tags:
@@ -78,9 +84,8 @@ paths:
           required: true
           schema:
             type: string
-
       description: ''
-      operationId: List Symbols
+      operationId: ListSymbols
       responses:
         '200':
           description: successful operation
@@ -92,6 +97,32 @@ paths:
                   $ref: Symbol
         '405':
           description: Invalid input
+  ########################################################################################################################
+  ########################################################################################################################
+  /fundamentals/{ticker}?fmt=json&filter=General:
+    get:
+      tags:
+        - assets
+      summary: Get Asset fundamentals
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+      description: ''
+      operationId: AssetFundamentalsGeneralSection
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: AssetFundamentals_SectionGeneral
+        '405':
+          description: Invalid input
+
 #  /profile/{symbol}:
 #    $ref: "./paths/profile.yaml"
 #
@@ -115,6 +146,8 @@ components:
       name: api_token
       in: query
   schemas:
+    ########################################################################################################################
+    ########################################################################################################################
     Exchange:
       required:
         - Name
@@ -135,7 +168,8 @@ components:
           type: string
         Currency:
           type: string
-
+    ########################################################################################################################
+    ########################################################################################################################
     SymbolSearch:
       required:
         - Code
@@ -163,6 +197,8 @@ components:
         previousCloseDate:
           type: string
           format: date
+    ########################################################################################################################
+    ########################################################################################################################
     Symbol:
       required:
         - Code
@@ -185,6 +221,115 @@ components:
           type: string
         Isin:
           type: string
+    ########################################################################################################################
+    ########################################################################################################################
+    AssetFundamentals_SectionGeneral:
+      required:
+        - Code
+        - Type
+        - Name
+        - Exchange
+      properties:
+        Code:
+          type: string
+        Type:
+          type: string
+        Name:
+          type: string
+        Exchange:
+          type: string
+        CurrencyCode:
+          type: string
+        CurrencyName:
+          type: string
+        CurrencySymbol:
+          type: string
+        CountryName:
+          type: string
+        CountryISO:
+          type: string
+        ISIN:
+          type: string
+        CUSIP:
+          type: string
+        CIK:
+          type: string
+        EmployerIdNumber:
+          type: string
+        FiscalYearEnd:
+          type: string
+        IPODate:
+          type: string
+          format: date
+        InternationalDomestic:
+          type: string
+        Sector:
+          type: string
+        Industry:
+          type: string
+        GicSector:
+          type: string
+        GicGroup:
+          type: string
+        GicIndustry:
+          type: string
+        GicSubIndustry:
+          type: string
+        HomeCategory:
+          type: string
+        IsDelisted:
+          type: boolean
+        Description:
+          type: string
+        Address:
+          type: string
+        AddressData:
+          type: object
+          properties:
+            Street:
+              type: string
+            City:
+              type: string
+            State:
+              type: string
+            Country:
+              type: string
+            ZIP:
+              type: string
+        Listings:
+          type: array
+          items:
+            properties:
+              Code:
+                type: string
+              Exchange:
+                type: string
+              Name:
+                type: string
+        Officers:
+          type: array
+          items:
+            properties:
+              Name:
+                type: string
+              Title:
+                type: string
+              YearBorn:
+                type: string
+        Phone:
+          type: string
+        WebURL:
+          type: string
+        LogoURL:
+          type: string
+        FullTimeEmployees:
+          type: number
+        UpdatedAt:
+          type: string
+          format: date
+########################################################################################################################
+########################################################################################################################
+
 
 #    EndOfDayPriceHistory:
 #      $ref: "./schemas/EndOfDayPriceHistory.yaml"

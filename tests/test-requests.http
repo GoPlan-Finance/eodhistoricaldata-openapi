@@ -10,3 +10,11 @@ GET https://eodhistoricaldata.com/api/exchanges-list/?api_token={{api_token}}
 ###
 
 GET  https://eodhistoricaldata.com/api/exchange-symbol-list/NEO?api_token={{api_token}}&fmt=json
+
+
+###
+GET https://eodhistoricaldata.com/api/fundamentals/AAPL.US?api_token={{api_token}}&fmt=json
+
+
+###
+GET https://eodhistoricaldata.com/api/fundamentals/AAPL.US?api_token={{api_token}}&fmt=json&filter=General
