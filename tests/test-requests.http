@@ -1,20 +1,28 @@
-###
+### Search API
+# https://eodhistoricaldata.com/financial-apis/search-api-for-stocks-etfs-mutual-funds-and-indices/
 GET https://eodhistoricaldata.com/api/search/test?api_token={{api_token}}
 
-###
+### Exchanges API. Get List of Tickers
+# https://eodhistoricaldata.com/financial-apis/exchanges-api-list-of-tickers-and-trading-hours/
+GET https://eodhistoricaldata.com/api/exchanges-list/?api_token={{api_token}}&fmt=json
 
-
-GET https://eodhistoricaldata.com/api/exchanges-list/?api_token={{api_token}}
-
-
-###
-
+### Get List of Tickers (Exchange Symbols)
 GET  https://eodhistoricaldata.com/api/exchange-symbol-list/NEO?api_token={{api_token}}&fmt=json
 
 
-###
+### Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
+# https://eodhistoricaldata.com/financial-apis/stock-etfs-fundamental-data-feeds/
 GET https://eodhistoricaldata.com/api/fundamentals/AAPL.US?api_token={{api_token}}&fmt=json
 
-
-###
+### Only General information
 GET https://eodhistoricaldata.com/api/fundamentals/AAPL.US?api_token={{api_token}}&fmt=json&filter=General
+
+
+### Stock Price Data API (End-Of-Day Historical Data)
+# https://eodhistoricaldata.com/financial-apis/api-for-historical-data-and-volumes/
+GET https://eodhistoricaldata.com/api/eod/MCD.US?api_token={{api_token}}
+
+
+### Historical Splits, Dividends and Short Interest API
+# https://eodhistoricaldata.com/financial-apis/api-splits-dividends/
+GET https://eodhistoricaldata.com/api/div/AAPL.US?api_token={{api_token}}&from=2000-01-01&fmt=json
