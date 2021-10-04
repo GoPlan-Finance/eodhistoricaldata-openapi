@@ -28,7 +28,7 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 ### Historical Prices, Splits and Dividends Data API
 
 - ⏳ Stock Price Data API (End-Of-Day Historical Data)
-- ⏳ Live (Delayed) Stock Prices API
+- ✅ Live (Delayed) Stock Prices API
 - ⏳ Historical Splits, Dividends and Short Interest API
 - ⏳ Technical Indicator API
 - ⏳ Intraday Historical Data API
