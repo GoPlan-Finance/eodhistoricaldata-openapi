@@ -18,3 +18,7 @@ GET https://eodhistoricaldata.com/api/fundamentals/AAPL.US?api_token={{api_token
 
 ###
 GET https://eodhistoricaldata.com/api/fundamentals/AAPL.US?api_token={{api_token}}&fmt=json&filter=General
+
+
+###
+GET https://eodhistoricaldata.com/api/real-time/AAPL.US?api_token={{api_token}}&fmt=json&s=VTI,EUR.FOREX

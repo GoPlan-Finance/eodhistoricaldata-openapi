@@ -123,6 +123,46 @@ paths:
         '405':
           description: Invalid input
 
+
+
+  ########################################################################################################################
+  ########################################################################################################################
+  /real-time/{ticker}?fmt=json:
+    get:
+      tags:
+        - assets
+      summary: Get Asset fundamentals
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+        - name: s
+          example: "AAPL.US,GOOG.US"
+          in: query
+          description: Extra tickers to fetch separated by a "," (Max recommended by EOD is 15-20 tickers)
+          required: false
+          schema:
+            type: string
+      description: ''
+      operationId: RealTimeQuote
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: AssetQuote
+        '405':
+          description: Invalid input
+
+
+
+
 #  /profile/{symbol}:
 #    $ref: "./paths/profile.yaml"
 #
@@ -327,6 +367,45 @@ components:
         UpdatedAt:
           type: string
           format: date
+########################################################################################################################
+########################################################################################################################
+    AssetQuote:
+      required:
+        - code
+        - timestamp
+        - gmtoffset
+        - open
+        - high
+        - low
+        - close
+        - volume
+        - previousClose
+        - type
+        - change
+        - change_p
+      properties:
+        code:
+          type: string
+        timestamp:
+          type: number
+        gmtoffset:
+          type: number
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        volume:
+          type: number
+        previousClose:
+          type: number
+        change:
+          type: number
+        change_p:
+          type: number
 ########################################################################################################################
 ########################################################################################################################
 
