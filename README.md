@@ -28,7 +28,7 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 ### Historical Prices, Splits and Dividends Data API
 
 - ⏳ Stock Price Data API (End-Of-Day Historical Data)
-- ⏳ Live (Delayed) Stock Prices API
+- ✅ Live (Delayed) Stock Prices API
 - ⏳ Historical Splits, Dividends and Short Interest API
 - ⏳ Technical Indicator API
 - ⏳ Intraday Historical Data API
@@ -38,30 +38,28 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 
 - Insider Transactions API
 - 🟨 Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
-    - ✅ General
-    - ⏳ Highlights
-    - Valuation
-    - ⏳ SharesStats
-    - Technicals
-    - ⏳ SplitsDividends
-        - NumberDividendsByYear
-
-    - ⏳ AnalystRatings
-    - Holders
-        - Institutions
-        - Funds
-
-    - InsiderTransactions
-    - ESGScores
-    - outstandingShares
-    - Earnings
-        - History
-        - Trend
-        - Annual
-    - Financials
-        - Balance_Sheet
-        - Cash_Flow
-        - Income_Statement
+   - ✅ General
+   - ⏳ Highlights
+   - Valuation
+   - ⏳ SharesStats
+   - Technicals
+   - ⏳ SplitsDividends
+      - NumberDividendsByYear
+   - ⏳ AnalystRatings
+   - Holders
+      - Institutions
+      - Funds
+   - InsiderTransactions
+   - ESGScores
+   - outstandingShares
+   - Earnings
+      - History
+      - Trend
+      - Annual
+   - Financials
+      - Balance_Sheet
+      - Cash_Flow
+      - Income_Statement
 
 
 - ⏳ Calendar. Upcoming Earnings, Trends, IPOs and Splits
@@ -73,13 +71,11 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 
 - ⏳ Bulk API for EOD, Splits and Dividends
 - ✅ Exchanges API. Get List of Tickers
-    - ✅ Get List of Exchanges
-    - ✅ Get List of Tickers (Exchange Symbols)
-
+   - ✅ Get List of Exchanges
+   - ✅ Get List of Tickers (Exchange Symbols)
 - ⏳ Exchanges API. Trading Hours and Market Holidays
-    - ⏳ Get Exchange Details and Trading Hours
-    - ⏳ Market Holidays Data API
-
+   - ⏳ Get Exchange Details and Trading Hours
+   - ⏳ Market Holidays Data API
 - ⏳ Financial News API
 - Stock Market Screener API
 - ✅ Search API for Stocks, ETFs, Mutual Funds and Indices
