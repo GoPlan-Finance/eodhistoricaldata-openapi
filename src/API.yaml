@@ -122,6 +122,31 @@ paths:
                 $ref: AssetFundamentals_SectionGeneral
         '405':
           description: Invalid input
+  ########################################################################################################################
+  ########################################################################################################################
+  /real-time/{ticker}?fmt=json:
+    get:
+      tags:
+        - assets
+      summary: Get Asset Price
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+      description: 'We provide live (delayed) stock prices API for all subscribers of ‘All-World’, ‘All World Extended’, and ‘ALL-IN-ONE’ plans. With this API endpoint, you are able to get delayed (15-20 minutes) information about almost all stocks on the market.'
+      operationId: AssetPrice
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: AssetPrice
+        '405':
+          description: Invalid input
 
 #  /profile/{symbol}:
 #    $ref: "./paths/profile.yaml"
@@ -327,6 +352,34 @@ components:
         UpdatedAt:
           type: string
           format: date
+########################################################################################################################
+########################################################################################################################
+    AssetPrice:
+      required:
+        - Code
+      properties:
+        Code:
+          type: string
+        Timestamp:
+          type: integer
+        Gmtoffset:
+          type: number
+        Open:
+          type: number
+        High:
+          type: number
+        Low:
+          type: number
+        Close:
+          type: number
+        Volume:
+          type: integer
+        PreviousClose:
+          type: number
+        Change:
+          type: number
+        ChangeP:
+          type: number
 ########################################################################################################################
 ########################################################################################################################
 

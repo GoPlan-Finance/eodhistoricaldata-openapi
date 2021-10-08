@@ -26,3 +26,7 @@ GET https://eodhistoricaldata.com/api/eod/MCD.US?api_token={{api_token}}
 ### Historical Splits, Dividends and Short Interest API
 # https://eodhistoricaldata.com/financial-apis/api-splits-dividends/
 GET https://eodhistoricaldata.com/api/div/AAPL.US?api_token={{api_token}}&from=2000-01-01&fmt=json
+
+### Live (Delayed) Stock Prices API
+# https://eodhistoricaldata.com/financial-apis/live-realtime-stocks-api/
+GET https://eodhistoricaldata.com/api/real-time/AAPL.US?api_token={{api_token}}&fmt=json
