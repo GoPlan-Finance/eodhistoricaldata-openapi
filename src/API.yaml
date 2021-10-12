@@ -97,13 +97,41 @@ paths:
                   $ref: Symbol
         '405':
           description: Invalid input
+
+
+  ########################################################################################################################
+  ########################################################################################################################
+  /fundamentals/{ticker}?fmt=json:
+    get:
+      tags:
+        - assets
+      summary: Get All Asset fundamentals
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+      description: ''
+      operationId: AssetFundamentals
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: AssetFundamentals
+        '405':
+          description: Invalid input
+
   ########################################################################################################################
   ########################################################################################################################
   /fundamentals/{ticker}?fmt=json&filter=General:
     get:
       tags:
         - assets
-      summary: Get Asset fundamentals
+      summary: Get General Asset fundamentals
       parameters:
         - name: ticker
           in: path
@@ -119,10 +147,37 @@ paths:
           content:
             application/json:
               schema:
-                $ref: AssetFundamentals_SectionGeneral
+                $ref: General
         '405':
           description: Invalid input
 
+
+
+  ########################################################################################################################
+  ########################################################################################################################
+  /fundamentals/{ticker}?fmt=json&filter=Technicals:
+    get:
+      tags:
+        - assets
+      summary: Get Technicals Asset fundamentals
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+      description: ''
+      operationId: AssetFundamentalsTechnicalsSection
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: Technicals
+        '405':
+          description: Invalid input
 
 
   ########################################################################################################################
@@ -131,7 +186,7 @@ paths:
     get:
       tags:
         - assets
-      summary: Get Asset fundamentals
+      summary: Get Asset Quote
       parameters:
         - name: ticker
           in: path
@@ -154,9 +209,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: AssetQuote
+                $ref: AssetQuote
         '405':
           description: Invalid input
 
@@ -207,7 +260,7 @@ components:
         Country:
           type: string
         Currency:
-          type: string
+          $ref: Currency
     ########################################################################################################################
     ########################################################################################################################
     SymbolSearch:
@@ -227,7 +280,7 @@ components:
         Country:
           type: string
         Currency:
-          type: string
+          $ref: Currency
         Type:
           type: string
         ISIN:
@@ -256,19 +309,430 @@ components:
         Country:
           type: string
         Currency:
-          type: string
+          $ref: Currency
         Type:
           type: string
         Isin:
           type: string
+
     ########################################################################################################################
     ########################################################################################################################
-    AssetFundamentals_SectionGeneral:
+    AssetQuote:
       required:
-        - Code
-        - Type
-        - Name
-        - Exchange
+        - code
+        - timestamp
+        - gmtoffset
+        - open
+        - high
+        - low
+        - close
+        - volume
+        - previousClose
+        - type
+        - change
+        - change_p
+      properties:
+        code:
+          type: string
+        timestamp:
+          type: number
+        gmtoffset:
+          type: number
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        volume:
+          type: number
+        previousClose:
+          type: number
+        change:
+          type: number
+        change_p:
+          type: number
+
+    ########################################################################################################################
+    ########################################################################################################################
+
+    AssetFundamentals:
+      properties:
+        General:
+          $ref: General
+        Highlights:
+          $ref: Highlights
+        Valuation:
+          $ref: Valuation
+        SharesStats:
+          $ref: SharesStats
+        Technicals:
+          $ref: Technicals
+        SplitsDividends:
+          $ref: SplitsDividends
+        AnalystRatings:
+          $ref: AnalystRatings
+        Holders:
+          $ref: Holders
+        InsiderTransactions:
+          $ref: InsiderTransaction
+        ESGScores:
+          $ref: ESGScores
+        outstandingShares:
+          $ref: OutstandingShares
+        Earnings:
+          $ref: Earnings
+        Financials:
+          $ref: Financials
+
+    ########################################################################################################################
+    ########################################################################################################################
+
+    AnalystRatings:
+      properties:
+        Rating:
+          type: number
+        TargetPrice:
+          type: number
+        StrongBuy:
+          type: number
+        Buy:
+          type: number
+        Hold:
+          type: number
+        Sell:
+          type: number
+        StrongSell:
+          type: number
+
+    ESGScores:
+      properties:
+        Disclaimer:
+          type: string
+        RatingDate:
+          type: string
+          format: date
+        TotalEsg:
+          type: number
+        TotalEsgPercentile:
+          type: number
+        EnvironmentScore:
+          type: number
+        EnvironmentScorePercentile:
+          type: number
+        SocialScore:
+          type: number
+        SocialScorePercentile:
+          type: number
+        GovernanceScore:
+          type: number
+        GovernanceScorePercentile:
+          type: number
+        ControversyLevel:
+          type: number
+        ActivitiesInvolvement:
+          type: object
+          additionalProperties:
+            $ref: ActivitiesInvolvement
+
+    ActivitiesInvolvement:
+      properties:
+        Activity:
+          type: string
+        Involvement:
+          type: boolean
+
+    Earnings:
+      properties:
+        History:
+          type: object
+          additionalProperties:
+            $ref: History
+        Trend:
+          type: object
+          additionalProperties:
+            $ref: Trend
+        Annual:
+          type: object
+          additionalProperties:
+            $ref: Annual
+
+    Trend:
+      type: object
+      properties:
+        period:
+          type: number
+        growth:
+          type: number
+        earningsEstimateAvg:
+          type: number
+        earningsEstimateLow:
+          type: number
+        earningsEstimateHigh:
+          type: number
+        earningsEstimateYearAgoEps:
+          type: number
+        earningsEstimateNumberOfAnalysts:
+          type: number
+        earningsEstimateGrowth:
+          type: number
+        revenueEstimateAvg:
+          type: number
+        revenueEstimateLow:
+          type: number
+        revenueEstimateHigh:
+          type: number
+        revenueEstimateYearAgoEps:
+          type: number
+        revenueEstimateNumberOfAnalysts:
+          type: number
+        revenueEstimateGrowth:
+          type: number
+        epsTrendCurrent:
+          type: number
+        epsTrend7daysAgo:
+          type: number
+        epsTrend30daysAgo:
+          type: number
+        epsTrend60daysAgo:
+          type: number
+        epsTrend90daysAgo:
+          type: number
+        epsRevisionsUpLast7days:
+          type: number
+        epsRevisionsUpLast30days:
+          type: number
+        epsRevisionsDownLast30days:
+          type: number
+        epsRevisionsDownLast90days:
+          type: number
+
+    Annual:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        epsActual:
+          type: number
+
+    History:
+      properties:
+        reportDate:
+          type: string
+          format: date
+        date:
+          type: string
+          format: date
+        beforeAfterMarket:
+          $ref: BeforeAfterMarket
+        currency:
+          $ref: Currency
+        epsActual:
+          type: number
+          nullable: true
+        epsEstimate:
+          type: number
+          nullable: true
+        epsDifference:
+          type: number
+          nullable: true
+        surprisePercent:
+          type: number
+          nullable: true
+
+    Financials:
+      properties:
+        Balance_Sheet:
+          $ref: BalanceSheet
+        Cash_Flow:
+          $ref: CashFlow
+        Income_Statement:
+          $ref: IncomeStatement
+
+    BalanceSheet:
+      properties:
+        currency_symbol:
+          $ref: Currency
+        quarterly:
+          type: object
+          additionalProperties:
+            $ref: BalanceSheetItem
+        yearly:
+          type: object
+          additionalProperties:
+            $ref: BalanceSheetItem
+
+
+    BalanceSheetItem:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        filing_date:
+          type: string
+          format: date
+        currency_symbol:
+          $ref: Currency
+        investments:
+          type: number
+        changeToLiabilities:
+          type: number
+        totalCashflowsFromInvestingActivities:
+          type: number
+        netBorrowings:
+          type: number
+        totalCashFromFinancingActivities:
+          type: number
+        changeToOperatingActivities:
+          type: number
+        netIncome:
+          type: number
+        changeInCash:
+          type: number
+        beginPeriodCashFlow:
+          type: number
+        endPeriodCashFlow:
+          type: number
+        totalCashFromOperatingActivities:
+          type: number
+        depreciation:
+          type: number
+        otherCashflowsFromInvestingActivities:
+          type: number
+        dividendsPaid:
+          type: number
+        changeToInventory:
+          type: number
+        changeToAccountReceivables:
+          type: number
+        salePurchaseOfStock:
+          type: number
+        otherCashflowsFromFinancingActivities:
+          type: number
+        changeToNetincome:
+          type: number
+        capitalExpenditures:
+          type: number
+        changeReceivables:
+          type: number
+        cashFlowsOtherOperating:
+          type: number
+        exchangeRateChanges:
+          type: number
+        cashAndCashEquivalentsChanges:
+          type: number
+        changeInWorkingCapital:
+          type: number
+        otherNonCashItems:
+          type: number
+        freeCashFlow:
+          type: number
+
+    CashFlow:
+      properties:
+        currency_symbol:
+          $ref: Currency
+        quarterly:
+          type: object
+          additionalProperties:
+            $ref: BalanceSheetItem
+        yearly:
+          type: object
+          additionalProperties:
+            $ref: BalanceSheetItem
+
+    IncomeStatement:
+      properties:
+        currency_symbol:
+          $ref: Currency
+        quarterly:
+          type: object
+          additionalProperties:
+            $ref: IncomeStatementItem
+        yearly:
+          type: object
+          additionalProperties:
+            $ref: IncomeStatementItem
+
+
+    IncomeStatementItem:
+      properties:
+        date:
+          type: string
+          format: date
+        filing_date:
+          type: string
+          format: date
+        currency_symbol:
+          $ref: Currency
+        researchDevelopment:
+          type: number
+        effectOfAccountingCharges:
+          type: number
+        incomeBeforeTax:
+          type: number
+        minorityInterest:
+          type: number
+        netIncome:
+          type: number
+        sellingGeneralAdministrative:
+          type: number
+        sellingAndMarketingExpenses:
+          type: number
+        grossProfit:
+          type: number
+        reconciledDepreciation:
+          type: number
+        ebit:
+          type: number
+        ebitda:
+          type: number
+        depreciationAndAmortization:
+          type: number
+        nonOperatingIncomeNetOther:
+          type: number
+        operatingIncome:
+          type: number
+        otherOperatingExpenses:
+          type: number
+        interestExpense:
+          type: number
+        taxProvision:
+          type: number
+        interestIncome:
+          type: number
+        netInterestIncome:
+          type: number
+        extraordinaryItems:
+          type: number
+        nonRecurring:
+          type: number
+        otherItems:
+          type: number
+        incomeTaxExpense:
+          type: number
+        totalRevenue:
+          type: number
+        totalOperatingExpenses:
+          type: number
+        costOfRevenue:
+          type: number
+        totalOtherIncomeExpenseNet:
+          type: number
+        discontinuedOperations:
+          type: number
+        netIncomeFromContinuingOps:
+          type: number
+        netIncomeApplicableToCommonShares:
+          type: number
+        preferredStockAndOtherAdjustments:
+          type: number
+
+    General:
       properties:
         Code:
           type: string
@@ -279,7 +743,7 @@ components:
         Exchange:
           type: string
         CurrencyCode:
-          type: string
+          $ref: Currency
         CurrencyName:
           type: string
         CurrencySymbol:
@@ -324,38 +788,15 @@ components:
         Address:
           type: string
         AddressData:
-          type: object
-          properties:
-            Street:
-              type: string
-            City:
-              type: string
-            State:
-              type: string
-            Country:
-              type: string
-            ZIP:
-              type: string
+          $ref: AddressData
         Listings:
           type: array
           items:
-            properties:
-              Code:
-                type: string
-              Exchange:
-                type: string
-              Name:
-                type: string
+            $ref: Listing
         Officers:
-          type: array
-          items:
-            properties:
-              Name:
-                type: string
-              Title:
-                type: string
-              YearBorn:
-                type: string
+          type: object
+          additionalProperties:
+            $ref: Officer
         Phone:
           type: string
         WebURL:
@@ -367,65 +808,281 @@ components:
         UpdatedAt:
           type: string
           format: date
-########################################################################################################################
-########################################################################################################################
-    AssetQuote:
-      required:
-        - code
-        - timestamp
-        - gmtoffset
-        - open
-        - high
-        - low
-        - close
-        - volume
-        - previousClose
-        - type
-        - change
-        - change_p
+
+    AddressData:
       properties:
-        code:
+        Street:
           type: string
-        timestamp:
+        City:
+          type: string
+        State:
+          type: string
+        Country:
+          type: string
+        ZIP:
+          type: string
+
+    Listing:
+      properties:
+        Code:
+          type: string
+        Exchange:
+          type: string
+        Name:
+          type: string
+
+    Officer:
+      properties:
+        Name:
+          type: string
+        Title:
+          type: string
+        YearBorn:
+          type: string
+
+    Highlights:
+      properties:
+        MarketCapitalization:
           type: number
-        gmtoffset:
+        MarketCapitalizationMln:
           type: number
-        open:
+        EBITDA:
           type: number
-        high:
+        PERatio:
           type: number
-        low:
+        PEGRatio:
           type: number
-        close:
+        WallStreetTargetPrice:
           type: number
-        volume:
+        BookValue:
           type: number
-        previousClose:
+        DividendShare:
+          type: number
+        DividendYield:
+          type: number
+        EarningsShare:
+          type: number
+        EPSEstimateCurrentYear:
+          type: number
+        EPSEstimateNextYear:
+          type: number
+        EPSEstimateNextQuarter:
+          type: number
+        EPSEstimateCurrentQuarter:
+          type: number
+        MostRecentQuarter:
+          type: string
+          format: date
+        ProfitMargin:
+          type: number
+        OperatingMarginTTM:
+          type: number
+        ReturnOnAssetsTTM:
+          type: number
+        ReturnOnEquityTTM:
+          type: number
+        RevenueTTM:
+          type: number
+        RevenuePerShareTTM:
+          type: number
+        QuarterlyRevenueGrowthYOY:
+          type: number
+        GrossProfitTTM:
+          type: number
+        DilutedEpsTTM:
+          type: number
+        QuarterlyEarningsGrowthYOY:
+          type: number
+
+    Holders:
+      properties:
+        Institutions:
+          type: object
+          additionalProperties:
+            $ref: Fund
+        Funds:
+          type: object
+          additionalProperties:
+            $ref: Fund
+
+    Fund:
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date
+        totalShares:
+          type: number
+        totalAssets:
+          type: number
+        currentShares:
           type: number
         change:
           type: number
         change_p:
           type: number
-########################################################################################################################
-########################################################################################################################
+
+    InsiderTransaction:
+      properties:
+        date:
+          type: string
+          format: date
+        ownerCik:
+          type: string
+          nullable: true
+        ownerName:
+          type: string
+        transactionDate:
+          type: string
+          format: date
+        transactionCode:
+          $ref: TransactionCode
+        transactionAmount:
+          type: number
+        transactionPrice:
+          type: number
+        transactionAcquiredDisposed:
+          $ref: TransactionAcquiredDisposed
+        postTransactionAmount:
+          type: number
+          nullable: true
+        secLink:
+          type: string
+
+    TransactionAcquiredDisposed:
+      type: string
+#      enum:
+#        - D
+
+    TransactionCode:
+      type: string
+#      enum:
+#        - S
+
+    SharesStats:
+      properties:
+        SharesOutstanding:
+          type: number
+        SharesFloat:
+          type: number
+        PercentInsiders:
+          type: number
+        PercentInstitutions:
+          type: number
+        SharesShort:
+          type: number
+        SharesShortPriorMonth:
+          type: number
+        ShortRatio:
+          type: number
+        ShortPercentOutstanding:
+          type: number
+        ShortPercentFloat:
+          type: number
+
+    Technicals:
+      properties:
+        Beta:
+          type: number
+        52WeekHigh:
+          type: number
+        52WeekLow:
+          type: number
+        50DayMA:
+          type: number
+        200DayMA:
+          type: number
+        SharesShort:
+          type: number
+        SharesShortPriorMonth:
+          type: number
+        ShortRatio:
+          type: number
+        ShortPercent:
+          type: number
+
+    SplitsDividends:
+      properties:
+        ForwardAnnualDividendRate:
+          type: number
+        ForwardAnnualDividendYield:
+          type: number
+        PayoutRatio:
+          type: number
+        DividendDate:
+          type: string
+          format: date
+        ExDividendDate:
+          type: string
+          format: date
+        LastSplitFactor:
+          type: string
+        LastSplitDate:
+          type: string
+          format: date
+        NumberDividendsByYear:
+          type: object
+          additionalProperties:
+            $ref: NumberDividendsByYear
+
+    NumberDividendsByYear:
+      properties:
+        Year:
+          type: number
+        Count:
+          type: number
+
+    Valuation:
+      properties:
+        TrailingPE:
+          type: number
+        ForwardPE:
+          type: number
+        PriceSalesTTM:
+          type: number
+        PriceBookMRQ:
+          type: number
+        EnterpriseValue:
+          type: number
+        EnterpriseValueRevenue:
+          type: number
+        EnterpriseValueEbitda:
+          type: number
+
+    OutstandingShares:
+      properties:
+        annual:
+          type: object
+          additionalProperties:
+            $ref: AnnualValue
+        quarterly:
+          type: object
+          additionalProperties:
+            $ref: AnnualValue
+
+    AnnualValue:
+      type: object
+      properties:
+        date:
+          type: string
+        dateFormatted:
+          type: string
+          format: date
+        sharesMln:
+          type: string
+        shares:
+          type: number
 
 
-#    EndOfDayPriceHistory:
-#      $ref: "./schemas/EndOfDayPriceHistory.yaml"
-#    EndOfDayPrice:
-#      $ref: "./schemas/EndOfDayPrice.yaml"
-#    OHVCVPrices:
-#      $ref: "./schemas/OHVCVPrices.yaml"
-#    OHVCVPrice:
-#      $ref: "./schemas/OHVCVPrice.yaml"
-#    CompanyProfile:
-#      $ref: "./schemas/CompanyProfile.yaml"
-#
-#
-#
-#
-#
-#
+    BeforeAfterMarket:
+      type: string
+    #      enum:
+    #        - AfterMarket
+    #        - null
 
-
-
+    Currency:
+      type: string
+#      enum:
+#        - USD
+#        - EUR

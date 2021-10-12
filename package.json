@@ -1,5 +1,6 @@
 {
-  "version": "0.1.0",
+  "name": "eodhistoricaldata-openapi",
+  "version": "0.2.0",
   "description": "EOD Historical Data OpenApi generator",
   "scripts": {
     "generate": "npm run generate-js && npm run generate-python",
