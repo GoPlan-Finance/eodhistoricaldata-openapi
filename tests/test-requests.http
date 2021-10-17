@@ -30,3 +30,11 @@ GET https://eodhistoricaldata.com/api/div/AAPL.US?api_token={{api_token}}&from=2
 
 ###
 GET https://eodhistoricaldata.com/api/real-time/AAPL.US?api_token={{api_token}}&fmt=json&s=VTI,EUR.FOREX
+
+### Bulk API for EOD, Splits and Dividends
+# https://eodhistoricaldata.com/financial-apis/bulk-api-eod-splits-dividends/
+GET https://eodhistoricaldata.com/api/eod-bulk-last-day/US?api_token={{api_token}}&fmt=json&symbols=MSFT,AAPL&filter=extended
+
+# End-Of-Day Historical Stock Market Data API
+### https://eodhistoricaldata.com/financial-apis/api-for-historical-data-and-volumes/
+GET https://eodhistoricaldata.com/api/eod/AAPL.US?api_token={{api_token}}&fmt=json

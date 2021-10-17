@@ -127,6 +127,32 @@ paths:
 
   ########################################################################################################################
   ########################################################################################################################
+  /fundamentals/{ticker}?fmt=json&filter=General,Highlights,Valuation,SharesStats,Technicals,AnalystRatings,ESGScores:
+    get:
+      tags:
+        - assets
+      summary: Get Compat Asset fundamentals (General,Highlights,Valuation,SharesStats,Technicals,AnalystRatings,ESGScores)
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+      description: ''
+      operationId: AssetFundamentalsCompact
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: AssetFundamentalsCompact
+        '405':
+          description: Invalid input
+
+  ########################################################################################################################
+  ########################################################################################################################
   /fundamentals/{ticker}?fmt=json&filter=General:
     get:
       tags:
@@ -176,6 +202,35 @@ paths:
             application/json:
               schema:
                 $ref: Technicals
+        '405':
+          description: Invalid input
+
+  ########################################################################################################################
+  ########################################################################################################################
+
+  /eod/{ticker}?fmt=json:
+    get:
+      tags:
+        - assets
+      summary: Get End of Day Historical Quotes
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+      description: ''
+      operationId: EndOfDayHistorical
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: EndOfDayQuote
         '405':
           description: Invalid input
 
@@ -354,6 +409,33 @@ components:
           type: number
         change_p:
           type: number
+    ########################################################################################################################
+    ########################################################################################################################
+    EndOfDayQuote:
+      required:
+        - date
+        - open
+        - high
+        - low
+        - close
+        - adjusted_close
+        - volume
+      properties:
+        date:
+          type: string
+          format: date
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        adjusted_close:
+          type: number
+        volume:
+          type: integer
 
     ########################################################################################################################
     ########################################################################################################################
@@ -386,6 +468,26 @@ components:
           $ref: Earnings
         Financials:
           $ref: Financials
+
+    ########################################################################################################################
+    ########################################################################################################################
+
+    AssetFundamentalsCompact:
+      properties:
+        General:
+          $ref: General
+        Highlights:
+          $ref: Highlights
+        Valuation:
+          $ref: Valuation
+        SharesStats:
+          $ref: SharesStats
+        Technicals:
+          $ref: Technicals
+        AnalystRatings:
+          $ref: AnalystRatings
+        ESGScores:
+          $ref: ESGScores
 
     ########################################################################################################################
     ########################################################################################################################
@@ -1001,6 +1103,7 @@ components:
           type: number
         ShortPercent:
           type: number
+      additionalProperties: true
 
     SplitsDividends:
       properties:
