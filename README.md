@@ -27,7 +27,7 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 
 ### Historical Prices, Splits and Dividends Data API
 
-- ⏳ Stock Price Data API (End-Of-Day Historical Data)
+- ✅ Stock Price Data API (End-Of-Day Historical Data)
 - ✅ Live (Delayed) Stock Prices API
 - ⏳ Historical Splits, Dividends and Short Interest API
 - ⏳ Technical Indicator API
@@ -39,24 +39,24 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 - Insider Transactions API
 - 🟨 Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
    - ✅ General
-   - ⏳ Highlights
-   - Valuation
-   - ⏳ SharesStats
-   - Technicals
-   - ⏳ SplitsDividends
+   - ✅ Highlights
+   - ✅ Valuation
+   - ✅ SharesStats
+   - ✅ Technicals
+   - ✅ SplitsDividends
       - NumberDividendsByYear
-   - ⏳ AnalystRatings
-   - Holders
+   - ✅ AnalystRatings
+   - ✅ Holders
       - Institutions
       - Funds
-   - InsiderTransactions
-   - ESGScores
-   - outstandingShares
-   - Earnings
+   - ✅ InsiderTransactions
+   - ✅ ESGScores
+   - ✅ outstandingShares
+   - ✅ Earnings
       - History
       - Trend
       - Annual
-   - Financials
+   - ✅ Financials
       - Balance_Sheet
       - Cash_Flow
       - Income_Statement
