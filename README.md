@@ -37,7 +37,7 @@ If the endpoint is not yet implemented, and dont have a ⏳, feel free to submit
 ### Fundamental and Economic Financial Data API
 
 - Insider Transactions API
-- 🟨 Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
+- ✅ Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
    - ✅ General
    - ✅ Highlights
    - ✅ Valuation
