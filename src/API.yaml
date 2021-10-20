@@ -220,6 +220,32 @@ paths:
           required: true
           schema:
             type: string
+        - name: period
+          in: query
+          description: Daily, weekly or monthly time period
+          required: false
+          schema:
+            $ref: Period
+        - name: from
+          in: query
+          description: Start date
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          description: End date
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: order
+          in: query
+          description: Ascending (a) or descending (d) order
+          required: false
+          schema:
+            $ref: Order
       description: ''
       operationId: EndOfDayHistorical
       responses:
@@ -1189,3 +1215,16 @@ components:
 #      enum:
 #        - USD
 #        - EUR
+
+    Period:
+      type: string
+      enum:
+        - d
+        - w
+        - m
+
+    Order:
+      type: string
+      enum:
+        - a
+        - d

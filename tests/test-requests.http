@@ -37,4 +37,4 @@ GET https://eodhistoricaldata.com/api/eod-bulk-last-day/US?api_token={{api_token
 
 # End-Of-Day Historical Stock Market Data API
 ### https://eodhistoricaldata.com/financial-apis/api-for-historical-data-and-volumes/
-GET https://eodhistoricaldata.com/api/eod/AAPL.US?api_token={{api_token}}&fmt=json
+GET https://eodhistoricaldata.com/api/eod/AAPL.US?api_token={{api_token}}&fmt=json&period=m
