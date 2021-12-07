@@ -1077,6 +1077,34 @@ components:
           nullable: true
         secLink:
           type: string
+    AssetPrice:
+      required:
+        - Code
+      properties:
+        Code:
+          type: string
+        Timestamp:
+          type: integer
+        Gmtoffset:
+          type: number
+        Open:
+          type: number
+        High:
+          type: number
+        Low:
+          type: number
+        Close:
+          type: number
+        Volume:
+          type: integer
+        PreviousClose:
+          type: number
+        Change:
+          type: number
+        ChangeP:
+          type: number
+########################################################################################################################
+########################################################################################################################
 
     TransactionAcquiredDisposed:
       type: string
