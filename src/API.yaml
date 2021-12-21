@@ -259,6 +259,55 @@ paths:
                   $ref: EndOfDayQuote
         '405':
           description: Invalid input
+  ########################################################################################################################
+  ########################################################################################################################
+
+  /intraday/{ticker}?fmt=json:
+    get:
+      tags:
+        - assets
+      summary: Get End of Day Historical Quotes
+      parameters:
+        - name: ticker
+          in: path
+          description: Asset Ticker
+          required: true
+          schema:
+            type: string
+        - name: interval
+          in: query
+          description: 'the possible intervals: ‘5m’ for 5-minutes, ‘1h’ for 1 hour, and ‘1m’ for 1-minute intervals.'
+          required: false
+          schema:
+            $ref: Interval
+        - name: from
+          in: query
+          description: Start date
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          description: End date
+          required: false
+          schema:
+            type: string
+            format: date
+      description: ''
+      operationId: Intraday
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: EndOfDayQuote
+        '405':
+          description: Invalid input
 
 
   ########################################################################################################################
@@ -290,7 +339,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: AssetQuote
+                oneOf:
+                  - $ref: AssetQuote
+                  - type: array
+                    items:
+                      $ref: AssetQuote
+
         '405':
           description: Invalid input
 
@@ -459,6 +513,36 @@ components:
         close:
           type: number
         adjusted_close:
+          type: number
+        volume:
+          type: integer
+
+    ########################################################################################################################
+    ########################################################################################################################
+    IntradayQuote:
+      required:
+        - date
+        - open
+        - high
+        - low
+        - close
+        - adjusted_close
+        - volume
+      properties:
+        timestamp:
+          type: number
+        gmtoffset:
+          type: number
+        datetime:
+          type: string
+          format: date
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
           type: number
         volume:
           type: integer
@@ -1250,6 +1334,13 @@ components:
         - d
         - w
         - m
+
+    Interval:
+      type: string
+      enum:
+        - 5m
+        - 1h
+        - 1m
 
     Order:
       type: string
